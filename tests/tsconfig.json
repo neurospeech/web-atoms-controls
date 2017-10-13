@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "watch": true,
+        "experimentalDecorators": true,
+        "module":"none",
+        "outFile": "dist/all-tests.js",
+        "sourceMap": true,
+        "declaration": true        
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "files": [
+		"../node_modules/typescript/lib/lib.es6.d.ts",
+		"../node_modules/web-atoms-mvvm/dist/web-atoms-mvvm.d.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "tests",
+        "dist",
+        "mock"
+    ]
+}

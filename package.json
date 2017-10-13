@@ -1,0 +1,25 @@
+{
+  "name": "web-atoms-controls",
+  "version": "1.0.0",
+  "description": "Set of additional line of business controls for Web Atoms and Web Atoms Core",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neurospeech/web-atoms-controls.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neurospeech/web-atoms-controls/issues"
+  },
+  "homepage": "https://github.com/neurospeech/web-atoms-controls#readme",
+  "dependencies": {
+    "ts-lint": "^4.5.1",
+    "typescript": "^2.5.3",
+    "web-atoms": "^2.1.119",
+    "web-atoms-mvvm": "^1.1.75"
+  }
+}
