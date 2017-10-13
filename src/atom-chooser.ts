@@ -1,9 +1,12 @@
+
 namespace WebAtoms {
 
-	// type AtomControl =  new() => any;
+	export class AtomChooser extends AtomControl {
 
-	// export class AtomChooser extends AtomControl {
+		constructor(e:HTMLElement) {
+			super(e);
+		}
 
-	// }
+	}
 
 }
