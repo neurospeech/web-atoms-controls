@@ -1,6 +1,6 @@
 {
   "name": "web-atoms-controls",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Set of additional line of business controls for Web Atoms and Web Atoms Core",
   "main": "index.js",
   "scripts": {
