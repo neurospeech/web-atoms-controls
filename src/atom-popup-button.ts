@@ -16,6 +16,10 @@ namespace WebAtoms {
 			super(e);
 		}
 
+		init():void {
+			super.init();
+		}
+
 	}
 
 }

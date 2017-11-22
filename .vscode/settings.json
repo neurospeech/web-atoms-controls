@@ -1,0 +1,6 @@
+{
+	"less.compile": {
+		"sourceMap": true,
+		"out": "${workspaceRoot}/dist/web-atoms-controls.css"
+	}
+}

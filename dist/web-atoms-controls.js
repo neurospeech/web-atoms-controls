@@ -40,6 +40,9 @@ var WebAtoms;
         function AtomPopupButton(e) {
             return _super.call(this, e) || this;
         }
+        AtomPopupButton.prototype.init = function () {
+            _super.prototype.init.call(this);
+        };
         return AtomPopupButton;
     }(WebAtoms.AtomControl));
     WebAtoms.AtomPopupButton = AtomPopupButton;
@@ -70,8 +73,32 @@ var WebAtoms;
             ex = ex.filter(function (cx) { return cx !== c; });
             e.className = ex.join(" ");
         };
+        Core.atomParent = function (element) {
+            if (element.atomControl) {
+                return element.atomControl;
+            }
+            if (element === document || element === window || !element.parentNode) {
+                return null;
+            }
+            return Core.atomParent(element._logicalParent || element.parentNode);
+        };
+        Core.getOffsetRect = function (e) {
+            var r = {
+                x: e.offsetLeft,
+                y: e.offsetTop,
+                width: e.offsetWidth,
+                height: e.offsetHeight
+            };
+            if (e.offsetParent) {
+                var rp = Core.getOffsetRect(e.offsetParent);
+                r.x += rp.x;
+                r.y += rp.y;
+            }
+            return r;
+        };
         return Core;
     }());
+    WebAtoms.Core = Core;
 })(WebAtoms || (WebAtoms = {}));
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -82,7 +109,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var WebAtoms;
 (function (WebAtoms) {
     var PopupService = /** @class */ (function () {
+        /**
+         *
+         */
         function PopupService() {
+            var _this = this;
+            this.lastPopupID = 0;
+            window.addEventListener("click", function (e) {
+                _this.currentTarget = e.target;
+            });
         }
         PopupService_1 = PopupService;
         Object.defineProperty(PopupService, "instance", {
@@ -92,6 +127,44 @@ var WebAtoms;
             enumerable: true,
             configurable: true
         });
+        PopupService.prototype.openAsync = function (p, vm) {
+            var _this = this;
+            return new Promise(function (resolve, reject) {
+                var parent = WebAtoms.Core.atomParent(_this.currentTarget);
+                var e = document.createElement("div");
+                // tslint:disable-next-line:no-string-literal
+                e["_logicalParent"] = parent._element;
+                e.id = "atom_popup_" + _this.lastPopupID++;
+                if (vm) {
+                    // tslint:disable-next-line:no-string-literal
+                    vm["windowName"] = e.id;
+                }
+                var r = WebAtoms.Core.getOffsetRect(_this.currentTarget);
+                e.style.position = "absolute";
+                e.style.left = r.x + "px";
+                e.style.top = (r.y + r.height) + "px";
+                document.body.appendChild(e);
+                var ct = new p(e);
+                ct.viewModel = vm;
+                ct.createChildren();
+                ct.init();
+                var d = {};
+                d.close = AtomDevice.instance.subscribe("atom-window-close:" + e.id, function (g, i) {
+                    ct.dispose();
+                    e.remove();
+                    d.close.dispose();
+                    d.cancel.dispose();
+                    resolve(i);
+                });
+                d.cancel = AtomDevice.instance.subscribe("atom-window-cancel:" + e.id, function (g, i) {
+                    ct.dispose();
+                    e.remove();
+                    d.close.dispose();
+                    d.cancel.dispose();
+                    reject(i);
+                });
+            });
+        };
         PopupService = PopupService_1 = __decorate([
             DIGlobal
         ], PopupService);
