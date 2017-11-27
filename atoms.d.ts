@@ -17,12 +17,4 @@ declare namespace WebAtoms {
 		
 		viewModel:any;
 	}
-
-	export class AtomViewModel {
-
-	}
-
-	export class AtomWindowViewModel extends AtomViewModel {
-		
-	}
 }

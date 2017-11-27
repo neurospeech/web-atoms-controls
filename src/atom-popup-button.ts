@@ -17,6 +17,11 @@ namespace WebAtoms {
 		}
 
 		init():void {
+
+
+			this.bindEvent(this._element, "click", () => {
+				
+			});
 			super.init();
 		}
 
