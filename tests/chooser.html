@@ -1,9 +1,11 @@
 <html>
 	<head>
 		<title>Chooser Sample</title>
-		<script	src="../node_modules/jquery/dist/jquery.js"/>
-		<script	src="../node_modules/web-atoms/web-atoms.js"/>
-		<script	src="dist/all-tests.js"/>
+		<script	src="../node_modules/jquery/dist/jquery.js"></script>
+		<script	src="../node_modules/web-atoms/web-atoms.js"></script>
+		<script	src="../node_modules/web-atoms-mvvm/dist/web-atoms-mvvm.js"></script>
+		<script	src="../dist/web-atoms-controls.js"></script>
+		<script	src="dist/all-tests.js"></script>
 
 
 		<link rel="stylesheet" href="../node_modules/web-atoms/style/atoms.css"/>
@@ -11,7 +13,14 @@
 	</head>
 	<body>
 		<div atom-type="AtomApplication">
-			
+			<div atom-type="AtomPopupButton"> 
+				<button>Click Me</button>
+				<div atom-template="popupTemplate">
+					<div style="width:200px;height:100px; border: solid 1px gray; border-radius:5px; padding:5px;">
+						Hello World !! <button class="close-popup">Close</button>
+					</div>
+				</div>
+			</button>
 		</div>
 	</body>
 </html>

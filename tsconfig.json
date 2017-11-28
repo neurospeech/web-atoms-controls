@@ -13,8 +13,7 @@
     ],
     "files": [
         "node_modules/typescript/lib/lib.es6.d.ts",
-        "node_modules/web-atoms-mvvm/dist/web-atoms-mvvm.d.ts",
-        "atoms.d.ts"
+        "node_modules/web-atoms-mvvm/dist/web-atoms-mvvm.d.ts"
     ],
     "exclude": [
         "node_modules",

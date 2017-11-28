@@ -18,6 +18,9 @@
   "homepage": "https://github.com/neurospeech/web-atoms-controls#readme",
   "dependencies": {
     "web-atoms": "^2.1.127",
-    "web-atoms-mvvm": "^1.4.17"
+    "web-atoms-mvvm": "^1.4.26"
+  },
+  "devDependencies": {
+    "typescript": "^2.6.2"
   }
 }
